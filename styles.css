@@ -374,7 +374,7 @@ footer .foot-links a:hover{color:var(--gold);}
 .explore-hero .bg{
   position:absolute;inset:0;
   background:linear-gradient(180deg, rgba(23,16,14,.35) 0%, rgba(23,16,14,.92) 100%),
-  url('https://images.pexels.com/photos/36707708/pexels-photo-36707708.jpeg?auto=compress&cs=tinysrgb&w=1920') center/cover no-repeat;
+  url('images/hr1.jpg') center/cover no-repeat;
 }
 .explore-hero-inner{position:relative;z-index:2;padding:160px 0 70px;color:#fff;}
 .explore-hero-inner h1{color:#fff;font-size:clamp(34px,5.6vw,58px);}

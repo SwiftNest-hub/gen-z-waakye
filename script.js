@@ -1,51 +1,50 @@
 /* ============================================
    WAKYE POINT — DATA
    ============================================ */
-function px(id,w){return `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=${w||700}`;}
 
 const MENU_ITEMS = [
-  // GH₵45 — everyday wakye combos
-  {id:'m01', name:'Wakye + Fish', desc:'Classic wakye with crispy fried fish.', price:45, category:'rice', tags:['wakye','rice','fish'], popular:false, img:px(8956671)},
-  {id:'m02', name:'Wakye + Chicken', desc:'Wakye topped with grilled chicken.', price:45, category:'rice', tags:['wakye','rice','chicken'], popular:true, img:px(34134206)},
-  {id:'m03', name:'Wakye + Egg', desc:'Wakye with boiled egg and shito.', price:45, category:'rice', tags:['wakye','rice','egg'], popular:false, img:px(18805640)},
-  {id:'m04', name:'Wakye + Sausage', desc:'Wakye with glossy grilled sausage.', price:45, category:'rice', tags:['wakye','rice','sausage'], popular:false, img:px(34134206,700)},
-  {id:'m05', name:'Wakye + Plantain', desc:'Wakye with sweet fried plantain.', price:45, category:'rice', tags:['wakye','rice','plantain'], popular:false, img:px(17952748)},
-  {id:'m06', name:'Wakye + Fried Meat', desc:'Wakye with well-seasoned fried beef.', price:45, category:'rice', tags:['wakye','rice','beef'], popular:false, img:px(34284708)},
-  {id:'m07', name:'Wakye + Fish + Egg', desc:'Fried fish and boiled egg together.', price:45, category:'rice', tags:['wakye','rice','fish','egg'], popular:false, img:px(8956671,700)},
-  {id:'m08', name:'Wakye + Chicken + Plantain', desc:'Grilled chicken with sweet plantain.', price:45, category:'rice', tags:['wakye','rice','chicken','plantain'], popular:false, img:px(17952746)},
-  {id:'m09', name:'Wakye + Mixed Protein', desc:'A little bit of everything, generously piled.', price:45, category:'rice', tags:['wakye','rice','chicken','beef','egg'], popular:true, img:px(33434014)},
+  // GH₵45
+  {id:'m01', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and wele.', price:45, category:'rice', tags:['wakye','chicken and wele','spaghetti','gari','salad','fish'], popular:false, img:'images/wakye01.jpg'},
+  {id:'m02', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, meat and wele.', price:45, category:'rice', tags:['wakye','rice','chicken'], popular:true, img:'images/wakye02.jpg'},
+  {id:'m03', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and wele.', price:45, category:'rice', tags:['wakye','rice','egg'], popular:false, img:'images/wakye03.jpg'},
+  {id:'m04', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and sausage.', price:45, category:'rice', tags:['wakye','rice','sausage'], popular:false, img:'images/wakye04.jpg'},
+  {id:'m05', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,meat and sausage.', price:45, category:'rice', tags:['wakye','rice','plantain'], popular:false, img:'images/wakye05.jpg'},
+  {id:'m06', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and sausage.', price:45, category:'rice', tags:['wakye','rice','beef'], popular:false, img:'images/wakye06.jpg'},
+  {id:'m07', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,meat and egg.', price:45, category:'rice', tags:['wakye','rice','fish','egg'], popular:false, img:'images/wakye07.jpg'},
+  {id:'m08', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and egg.', price:45, category:'rice', tags:['wakye','rice','chicken','plantain'], popular:false, img:'images/wakye08.jpg'},
+  {id:'m09', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and egg.', price:45, category:'rice', tags:['wakye','rice','chicken','beef','egg'], popular:true, img:'images/wakye09.jpg'},
 
-  // GH₵65 — premium combos
-  {id:'m10', name:'Wakye Deluxe — Chicken, Egg & Plantain', desc:'Grilled chicken, egg and sweet plantain.', price:65, category:'rice', tags:['wakye','rice','chicken','egg','plantain'], popular:true, img:px(21822134)},
-  {id:'m11', name:'Wakye Deluxe — Fish, Sausage & Salad', desc:'Fried fish, sausage and fresh salad.', price:65, category:'rice', tags:['wakye','rice','fish','sausage','salad'], popular:false, img:px(37307214)},
-  {id:'m12', name:'Wakye Deluxe — Beef, Egg & Gari', desc:'Seasoned beef, egg and toasted gari.', price:65, category:'rice', tags:['wakye','rice','beef','egg','gari'], popular:false, img:px(19781592)},
+  // GH₵65
+  {id:'m10', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, meat, egg, chicken and sausage.', price:65, category:'rice', tags:['wakye','rice','chicken','egg','plantain'], popular:true, img:'images/wakye10.jpg'},
+  {id:'m11', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, fish, chicken, egg and sausage.', price:65, category:'rice', tags:['wakye','rice','fish','sausage','salad'], popular:false, img:'images/wakye11.jpg'},
+  {id:'m12', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, fish, meat, egg, and wele', price:65, category:'rice', tags:['wakye','rice','beef','egg','gari'], popular:false, img:'images/wakye12.jpg'},
 
-  // GH₵85 — special
-  {id:'m13', name:'Wakye Special Platter', desc:'Chicken, fish, egg and plantain on one generous plate.', price:85, category:'rice', tags:['wakye','rice','chicken','fish','egg','plantain'], popular:false, img:px(37538487)},
+  // GH₵85
+  {id:'m13', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, sausage, plantain.', price:85, category:'rice', tags:['wakye','rice','chicken','fish','egg','plantain'], popular:false, img:'images/wakye13.jpg'},
 
-  // GH₵100 — grand deluxe
-  {id:'m14', name:'Wakye Grand Deluxe', desc:'Two chicken pieces, sausage, egg, plantain and salad.', price:100, category:'rice', tags:['wakye','rice','chicken','sausage','egg','plantain','salad'], popular:true, img:px(13915043)},
+  // GH₵100
+  {id:'m14', name:'Waakye/Plantain', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:85, category:'rice', tags:['wakye','rice','chicken','sausage','egg','plantain','salad'], popular:true, img:'images/wakye14.jpg'},
 
-  // GH₵150 — luxury platter
-  {id:'m15', name:'Wakye Royal Platter', desc:"Wakye Point's largest platter — chicken, fish, sausage, egg, beef, plantain, salad and gari.", price:150, category:'rice', tags:['wakye','rice','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:px(13915043,900)},
+  // GH₵150
+  {id:'m15', name:'Waakye/Plain rice', desc:"Waakye, gari, spaghetti, salad, chicken, fish, meat, egg, plantain.", price:85, category:'rice', tags:['wakye','rice','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:'images/wakye15.jpg'},
 
   // Drinks
-  {id:'d01', name:'Sobolo (Hibiscus Drink)', desc:'Chilled, spiced hibiscus juice.', price:10, category:'drinks', tags:['drink','sobolo'], popular:true, img:px(8678927)},
-  {id:'d02', name:'Ginger & Pineapple Drink', desc:'Refreshing house-made ginger drink.', price:10, category:'drinks', tags:['drink','ginger'], popular:false, img:px(4134388)},
-  {id:'d03', name:'Bottled Water', desc:'Chilled sachet-free bottled water.', price:5, category:'drinks', tags:['drink','water'], popular:false, img:px(357577)},
+  {id:'d01', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'drinks', tags:['drink','sobolo'], popular:true, img:'images/drink01.jpg'},
+  {id:'d02', name:'Waakya/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'drinks', tags:['drink','ginger'], popular:false, img:'images/drink02.jpg'},
+  {id:'d03', name:'Bottled Water', desc:'Chilled bottled water.', price:5, category:'drinks', tags:['drink','water'], popular:false, img:'images/drink03.jpg'},
 ];
 
 const TOPPINGS = [
-  {id:'t01', name:'Egg', price:5, group:'proteins', img:px(18805640,300)},
-  {id:'t02', name:'Fried Chicken', price:15, group:'proteins', img:px(34134206,300)},
-  {id:'t03', name:'Fried Fish', price:15, group:'proteins', img:px(8956671,300)},
-  {id:'t04', name:'Cow Meat', price:15, group:'proteins', img:px(19781592,300)},
-  {id:'t05', name:'Cow Skin (Wele)', price:10, group:'proteins', img:px(34284708,300)},
-  {id:'t06', name:'Sausage', price:10, group:'proteins', img:px(34134206,300)},
-  {id:'t07', name:'Fried Plantain', price:8, group:'extras', img:px(17952748,300)},
-  {id:'t08', name:'Spaghetti', price:8, group:'extras', img:px(9700895,300)},
-  {id:'t09', name:'Salad', price:5, group:'extras', img:px(19781592,300)},
-  {id:'t10', name:'Gari', price:5, group:'extras', img:px(9700896,300)},
+  {id:'t01', name:'Egg', price:5, group:'proteins', img:'images/topping01.jpg'},
+  {id:'t02', name:'Fried Chicken', price:15, group:'proteins', img:'images/topping02.jpg'},
+  {id:'t03', name:'Fried Fish', price:15, group:'proteins', img:'images/topping03.jpg'},
+  {id:'t04', name:'Cow Meat', price:15, group:'proteins', img:'images/topping04.jpg'},
+  {id:'t05', name:'Cow Skin (Wele)', price:10, group:'proteins', img:'images/topping05.jpg'},
+  {id:'t06', name:'Sausage', price:10, group:'proteins', img:'images/topping06.jpg'},
+  {id:'t07', name:'Fried Plantain', price:8, group:'extras', img:'images/topping07.jpg'},
+  {id:'t08', name:'Spaghetti', price:8, group:'extras', img:'images/topping08.jpg'},
+  {id:'t09', name:'Salad', price:5, group:'extras', img:'images/topping09.jpg'},
+  {id:'t10', name:'Gari', price:5, group:'extras', img:'images/topping10.jpg'},
   {id:'t11', name:'Shito', price:3, group:'extras', img:null},
 ];
 
