@@ -3,49 +3,79 @@
    ============================================ */
 
 const MENU_ITEMS = [
-  // GH₵45
-  {id:'m01', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and wele.', price:45, category:'rice', tags:['wakye','chicken and wele','spaghetti','gari','salad','fish'], popular:false, img:'images/45_c.png'},
-  {id:'m02', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, meat and wele.', price:45, category:'rice', tags:['wakye','rice','chicken'], popular:true, img:'images/45_c.png'},
-  {id:'m03', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and wele.', price:45, category:'rice', tags:['wakye','rice','egg'], popular:false, img:'images/45_c.png'},
-  {id:'m04', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and sausage.', price:45, category:'rice', tags:['wakye','rice','sausage'], popular:false, img:'images/45_c.png'},
-  {id:'m05', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,meat and sausage.', price:45, category:'rice', tags:['wakye','rice','plantain'], popular:false, img:'images/45_c.png'},
-  {id:'m06', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and sausage.', price:45, category:'rice', tags:['wakye','rice','beef'], popular:false, img:'images/45_c.png'},
-  {id:'m07', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,meat and egg.', price:45, category:'rice', tags:['wakye','rice','fish','egg'], popular:false, img:'images/45_c.png'},
-  {id:'m08', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,fish and egg.', price:45, category:'rice', tags:['wakye','rice','chicken','plantain'], popular:false, img:'images/45_c.png'},
-  {id:'m09', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad,chicken and egg.', price:45, category:'rice', tags:['wakye','rice','chicken','beef','egg'], popular:true, img:'images/45_c.png'},
+  // GH₵45 - WAAKYE
+  {id:'m01', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,chicken and wele.', price:45, category:'waakye', tags:['wakye','chicken and wele','spaghetti','gari','salad','fish'], popular:false, img:'images/45_c.png'},
+  {id:'m02', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, meat and wele.', price:45, category:'waakye', tags:['wakye','waakye','chicken'], popular:true, img:'images/45_c.png'},
+  {id:'m03', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,fish and wele.', price:45, category:'waakye', tags:['wakye','waakye','egg'], popular:false, img:'images/45_c.png'},
+  {id:'m04', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,chicken and sausage.', price:45, category:'waakye', tags:['wakye','waakye','sausage'], popular:false, img:'images/45_c.png'},
+  {id:'m05', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,meat and sausage.', price:45, category:'waakye', tags:['wakye','waakye','plantain'], popular:false, img:'images/45_c.png'},
+  {id:'m06', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,fish and sausage.', price:45, category:'waakye', tags:['wakye','waakye','beef'], popular:false, img:'images/45_c.png'},
+  {id:'m07', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,meat and egg.', price:45, category:'waakye', tags:['wakye','waakye','fish','egg'], popular:false, img:'images/45_c.png'},
+  {id:'m08', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,fish and egg.', price:45, category:'waakye', tags:['wakye','waakye','chicken','plantain'], popular:false, img:'images/45_c.png'},
+  {id:'m09', name:'Waakye', desc:'Waakye, gari, spaghetti, salad,chicken and egg.', price:45, category:'waakye', tags:['wakye','waakye','chicken','beef','egg'], popular:true, img:'images/45_c.png'},
 
-  // GH₵65
-  {id:'m10', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, meat, egg, chicken and sausage.', price:65, category:'rice', tags:['wakye','rice','chicken','egg','plantain'], popular:true, img:'images/amt_c.jpg'},
-  {id:'m11', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, fish, chicken, egg and sausage.', price:65, category:'rice', tags:['wakye','rice','fish','sausage','salad'], popular:false, img:'images/amt_c.jpg'},
-  {id:'m12', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, fish, meat, egg, and wele', price:65, category:'rice', tags:['wakye','rice','beef','egg','gari'], popular:false, img:'images/amt_c.jpg'},
+  // GH₵65 - WAAKYE
+  {id:'m10', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, meat, egg, chicken and sausage.', price:65, category:'waakye', tags:['wakye','waakye','chicken','egg','plantain'], popular:true, img:'images/amt_c.jpg'},
+  {id:'m11', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, fish, chicken, egg and sausage.', price:65, category:'waakye', tags:['wakye','waakye','fish','sausage','salad'], popular:false, img:'images/amt_c.jpg'},
+  {id:'m12', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, fish, meat, egg, and wele', price:65, category:'waakye', tags:['wakye','waakye','beef','egg','gari'], popular:false, img:'images/amt_c.jpg'},
 
-  // GH₵85
-  {id:'m13', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, sausage, plantain.', price:85, category:'rice', tags:['wakye','rice','chicken','fish','egg','plantain'], popular:false, img:'images/85_c.png'},
+  // GH₵85 - WAAKYE
+  {id:'m13', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, sausage, plantain.', price:85, category:'waakye', tags:['wakye','waakye','chicken','fish','egg','plantain'], popular:false, img:'images/85_c.png'},
 
-  // GH₵100
-  {id:'m14', name:'Waakye/Plantain', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:85, category:'rice', tags:['wakye','rice','chicken','sausage','egg','plantain','salad'], popular:true, img:'images/85_c.png'},
+  // GH₵100 - WAAKYE
+  {id:'m14', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'waakye', tags:['wakye','waakye','chicken','sausage','egg','plantain','salad'], popular:true, img:'images/100_c.png'},
 
-  // GH₵150
-  {id:'m15', name:'Waakye/Plain rice', desc:"Waakye, gari, spaghetti, salad, chicken, fish, meat, egg, plantain.", price:85, category:'rice', tags:['wakye','rice','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:'images/85_c.png'},
+  // GH₵150 - WAAKYE
+  {id:'m15', name:'Waakye', desc:"Waakye, gari, spaghetti, salad, chicken, fish, meat, egg, plantain.", price:150, category:'waakye', tags:['wakye','waakye','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:'images/150_c.png'},
+  {id:'d01', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'waakye', tags:['drink','sobolo'], popular:true, img:'images/100_c.png'},
+  {id:'d02', name:'Waakya', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'waakye', tags:['drink','ginger'], popular:false, img:'images/150_c.png'},
+  
+  // GH₵45 - RICE (Unique IDs r01 to r09)
+  {id:'r01', name:'Rice', desc:'Plain Rice, spaghetti, salad,chicken and wele.', price:45, category:'rice', tags:['rice','chicken and wele','spaghetti','gari','salad','fish'], popular:false, img:'images/rice-3.png'},
+  {id:'r02', name:'Rice', desc:'Plain Rice, spaghetti, salad, meat and wele.', price:45, category:'rice', tags:['rice','waakye','chicken'], popular:true, img:'images/rice-3.png'},
+  {id:'r03', name:'Rice', desc:'Plain Rice, spaghetti, salad,fish and wele.', price:45, category:'rice', tags:['rice','waakye','egg'], popular:false, img:'images/rice-3.png'},
+  {id:'r04', name:'Rice', desc:'Plain Rice, spaghetti, salad,chicken and sausage.', price:45, category:'rice', tags:['rice','waakye','sausage'], popular:false, img:'images/rice-3.png'},
+  {id:'r05', name:'Rice', desc:'Plain Rice, spaghetti, salad,meat and sausage.', price:45, category:'rice', tags:['rice','waakye','plantain'], popular:false, img:'images/rice-3.png'},
+  {id:'r06', name:'Rice', desc:'Plain Rice, spaghetti, salad,fish and sausage.', price:45, category:'rice', tags:['rice','waakye','beef'], popular:false, img:'images/rice-3.png'},
+  {id:'r07', name:'Rice', desc:'Plain Rice, spaghetti, salad,meat and egg.', price:45, category:'rice', tags:['rice','waakye','fish','egg'], popular:false, img:'images/rice-3.png'},
+  {id:'r08', name:'Rice', desc:'Plain Rice, spaghetti, salad,fish and egg.', price:45, category:'rice', tags:['rice','waakye','chicken','plantain'], popular:false, img:'images/rice-3.png'},
+  {id:'r09', name:'Rice', desc:'Plain Rice, spaghetti, salad,chicken and egg.', price:45, category:'rice', tags:['rice','waakye','chicken','egg'], popular:true, img:'images/rice-3.png'},
+
+  // GH₵65 - RICE (Unique IDs r10 to r12)
+  {id:'r10', name:'Rice', desc:'Plain Rice, spaghetti, salad, meat, egg, chicken and sausage.', price:65, category:'rice', tags:['rice','waakye','chicken','egg','plantain'], popular:true, img:'images/rice-1.png'},
+  {id:'r11', name:'Rice', desc:'Plain Rice, spaghetti, salad, fish, chicken, egg and sausage.', price:65, category:'rice', tags:['rice','waakye','fish','sausage','salad'], popular:false, img:'images/rice-1.png'},
+  {id:'r12', name:'Rice', desc:'Plain Rice, spaghetti, salad, fish, meat, egg, and wele', price:65, category:'rice', tags:['rice','waakye','beef','egg','gari'], popular:false, img:'images/rice-1.png'},
+
+  // GH₵85 - RICE (Unique ID r13)
+  {id:'r13', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, sausage, plantain.', price:85, category:'rice', tags:['rice','waakye','chicken','fish','egg','plantain'], popular:false, img:'images/rice-4.png'},
+
+  // GH₵100 - RICE (Unique ID r14)
+  {id:'r14', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'rice', tags:['rice','waakye','chicken','sausage','egg','plantain','salad'], popular:true, img:'images/rice-1.png'},
+
+  // GH₵150 - RICE (Unique IDs r15 to r17)
+  {id:'r15', name:'Rice', desc:"Plain Rice, spaghetti, salad, chicken, fish, meat, egg, plantain.", price:150, category:'rice', tags:['rice','waakye','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:'images/rice-2.png'},
+  {id:'r16', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'rice', tags:['drink','sobolo'], popular:true, img:'images/rice-1.png'},
+  {id:'r17', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'rice', tags:['drink','ginger'], popular:false, img:'images/rice-2.png'},
 
   // Drinks
-  {id:'d01', name:'Waakye/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'drinks', tags:['drink','sobolo'], popular:true, img:'images/100_c.png'},
-  {id:'d02', name:'Waakya/Plain rice', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'drinks', tags:['drink','ginger'], popular:false, img:'images/hun.png'},
   {id:'d03', name:'Bottled Water', desc:'Chilled bottled water.', price:5, category:'drinks', tags:['drink','water'], popular:false, img:'images/bottle.png'},
+  {id:'d04', name:'Coca-cola', desc:'Chilled Coke.', price:5, category:'drinks', tags:['drink','coke'], popular:false, img:'images/coke.png'},
 ];
 
+
 const TOPPINGS = [
-  {id:'t01', name:'Egg', price:5, group:'proteins', img:'images/egg.png'},
+  {id:'t01', name:'Egg', price:4, group:'proteins', img:'images/egg.png'},
   {id:'t02', name:'Fried Chicken', price:15, group:'proteins', img:'images/chicken.png'},
   {id:'t03', name:'Fried Fish', price:15, group:'proteins', img:'images/fish.png'},
   {id:'t04', name:'Cow Meat', price:15, group:'proteins', img:'images/cow.png'},
-  {id:'t05', name:'Cow Skin (Wele)', price:10, group:'proteins', img:'images/wele.png'},
-  {id:'t06', name:'Sausage', price:10, group:'proteins', img:'images/sausage.png'},
-  {id:'t07', name:'Fried Plantain', price:8, group:'extras', img:'images/plantain.png'},
-  {id:'t08', name:'Spaghetti', price:8, group:'extras', img:'images/spag.png'},
-  {id:'t09', name:'Salad', price:5, group:'extras', img:'images/salad.png'},
+  {id:'t05', name:'Cow Skin (Wele)', price:5, group:'proteins', img:'images/wele.png'},
+  {id:'t06', name:'Sausage', price:4, group:'proteins', img:'images/sausage.png'},
+  {id:'t07', name:'Fried Plantain', price:5, group:'extras', img:'images/plantain.png'},
+  {id:'t08', name:'Spaghetti', price:5, group:'extras', img:'images/spag.png'},
+  {id:'t09', name:'Mixed Salad', price:30, group:'extras', img:'images/salad.png'},
   {id:'t10', name:'Gari', price:5, group:'extras', img:'images/gari.png'},
-  {id:'t11', name:'Shito', price:3, group:'extras', img:null},
+  {id:'t11', name:'Waagashi', price:10, group:'extras', img:'images/waagashi.png'},
+  {id:'t12', name:'Shito', price:5, group:'extras', img:'images/shito.png'},
 ];
 
 const WA_NUMBER = '233245138854'; // WhatsApp number for checkout
@@ -155,7 +185,7 @@ function checkoutViaWhatsApp(){
   if(cart.length===0) return;
   const subtotal = cartSubtotal();
   const delivery = DELIVERY_FEE;
-  let msg = `Hello Wakye Point, I'd like to order:\n\n`;
+  let msg = `Hello GENZ WAAKYE, I'd like to order:\n\n`;
   cart.forEach(c=>{
     msg += `• ${c.name} x${c.qty} — GH₵ ${c.qty*c.price}\n`;
   });
@@ -168,7 +198,7 @@ function initWaCtas(){
   document.querySelectorAll('.wa-generic-cta').forEach(el=>{
     el.addEventListener('click',(e)=>{
       e.preventDefault();
-      window.open(waLink(`Hello Wakye Point, I'd like to order…`),'_blank');
+      window.open(waLink(`Hello GENZ WAAKYE, I'd like to order…`),'_blank');
     });
   });
 }
