@@ -1,5 +1,5 @@
 /* ============================================
-   WAKYE POINT — DATA
+   GENZ WAAKYE — DATA
    ============================================ */
 
 const MENU_ITEMS = [
@@ -30,7 +30,7 @@ const MENU_ITEMS = [
   {id:'d01', name:'Waakye', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'waakye', tags:['drink','sobolo'], popular:true, img:'images/100_c.png'},
   {id:'d02', name:'Waakya', desc:'Waakye, gari, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'waakye', tags:['drink','ginger'], popular:false, img:'images/150_c.png'},
   
-  // GH₵45 - RICE (Unique IDs r01 to r09)
+  // GH₵45 - RICE
   {id:'r01', name:'Rice', desc:'Plain Rice, spaghetti, salad,chicken and wele.', price:45, category:'rice', tags:['rice','chicken and wele','spaghetti','gari','salad','fish'], popular:false, img:'images/rice-3.png'},
   {id:'r02', name:'Rice', desc:'Plain Rice, spaghetti, salad, meat and wele.', price:45, category:'rice', tags:['rice','waakye','chicken'], popular:true, img:'images/rice-3.png'},
   {id:'r03', name:'Rice', desc:'Plain Rice, spaghetti, salad,fish and wele.', price:45, category:'rice', tags:['rice','waakye','egg'], popular:false, img:'images/rice-3.png'},
@@ -41,18 +41,18 @@ const MENU_ITEMS = [
   {id:'r08', name:'Rice', desc:'Plain Rice, spaghetti, salad,fish and egg.', price:45, category:'rice', tags:['rice','waakye','chicken','plantain'], popular:false, img:'images/rice-3.png'},
   {id:'r09', name:'Rice', desc:'Plain Rice, spaghetti, salad,chicken and egg.', price:45, category:'rice', tags:['rice','waakye','chicken','egg'], popular:true, img:'images/rice-3.png'},
 
-  // GH₵65 - RICE (Unique IDs r10 to r12)
+  // GH₵65 - RICE
   {id:'r10', name:'Rice', desc:'Plain Rice, spaghetti, salad, meat, egg, chicken and sausage.', price:65, category:'rice', tags:['rice','waakye','chicken','egg','plantain'], popular:true, img:'images/rice-1.png'},
   {id:'r11', name:'Rice', desc:'Plain Rice, spaghetti, salad, fish, chicken, egg and sausage.', price:65, category:'rice', tags:['rice','waakye','fish','sausage','salad'], popular:false, img:'images/rice-1.png'},
   {id:'r12', name:'Rice', desc:'Plain Rice, spaghetti, salad, fish, meat, egg, and wele', price:65, category:'rice', tags:['rice','waakye','beef','egg','gari'], popular:false, img:'images/rice-1.png'},
 
-  // GH₵85 - RICE (Unique ID r13)
+  // GH₵85 - RICE
   {id:'r13', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, sausage, plantain.', price:85, category:'rice', tags:['rice','waakye','chicken','fish','egg','plantain'], popular:false, img:'images/rice-4.png'},
 
-  // GH₵100 - RICE (Unique ID r14)
+  // GH₵100 - RICE
   {id:'r14', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'rice', tags:['rice','waakye','chicken','sausage','egg','plantain','salad'], popular:true, img:'images/rice-1.png'},
 
-  // GH₵150 - RICE (Unique IDs r15 to r17)
+  // GH₵150 - RICE
   {id:'r15', name:'Rice', desc:"Plain Rice, spaghetti, salad, chicken, fish, meat, egg, plantain.", price:150, category:'rice', tags:['rice','waakye','chicken','fish','sausage','egg','beef','plantain','salad','gari'], popular:false, img:'images/rice-2.png'},
   {id:'r16', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'rice', tags:['drink','sobolo'], popular:true, img:'images/rice-1.png'},
   {id:'r17', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'rice', tags:['drink','ginger'], popular:false, img:'images/rice-2.png'},
@@ -71,15 +71,14 @@ const TOPPINGS = [
   {id:'t05', name:'Cow Skin (Wele)', price:5, group:'proteins', img:'images/wele.png'},
   {id:'t06', name:'Sausage', price:4, group:'proteins', img:'images/sausage.png'},
   {id:'t07', name:'Fried Plantain', price:5, group:'extras', img:'images/plantain.png'},
-  {id:'t08', name:'Spaghetti', price:5, group:'extras', img:'images/spag.png'},
-  {id:'t09', name:'Mixed Salad', price:30, group:'extras', img:'images/salad.png'},
+  {id:'t08', name:'Spaghetti', price:8, group:'extras', img:'images/spag.png'},
+  {id:'t09', name:'Salad', price:5, group:'extras', img:'images/salad.png'},
   {id:'t10', name:'Gari', price:5, group:'extras', img:'images/gari.png'},
-  {id:'t11', name:'Waagashi', price:10, group:'extras', img:'images/waagashi.png'},
-  {id:'t12', name:'Shito', price:5, group:'extras', img:'images/shito.png'},
+  {id:'t11', name:'Waagashi', price:3, group:'extras', img:'images/waagashi.png'},
+  {id:'t12', name:'Shito', price:10, group:'extras', img:'images/shito.png'},
 ];
 
 const WA_NUMBER = '233245138854'; // WhatsApp number for checkout
-const DELIVERY_FEE = 15;
 
 /* ============================================
    CART — localStorage-backed
@@ -157,11 +156,23 @@ function renderCart(){
         <div class="line-total">GH₵ ${c.qty*c.price}</div>
       </div>`).join('');
   }
+
+  const orderTypeEl = document.getElementById('orderType');
+  const isPickup = orderTypeEl && orderTypeEl.value === 'pickup';
+
   const subtotal = cartSubtotal();
-  const delivery = subtotal>0 ? DELIVERY_FEE : 0;
   document.getElementById('cartSubtotal').textContent = `GH₵ ${subtotal}`;
-  document.getElementById('cartDelivery').textContent = `GH₵ ${delivery}`;
-  document.getElementById('cartTotal').textContent = `GH₵ ${subtotal+delivery}`;
+  
+  const deliveryEl = document.getElementById('cartDelivery');
+  if(deliveryEl){
+    deliveryEl.textContent = isPickup ? 'GH₵ 0 (Pickup)' : 'Delivery fee varies';
+  }
+
+  const totalEl = document.getElementById('cartTotal');
+  if(totalEl){
+    totalEl.textContent = isPickup ? `GH₵ ${subtotal}` : `GH₵ ${subtotal} + Delivery`;
+  }
+
   const checkoutBtn = document.getElementById('cartCheckoutBtn');
   if(checkoutBtn) checkoutBtn.disabled = cart.length===0;
 }
@@ -176,21 +187,95 @@ function closeCart(){
   document.getElementById('cartOverlay').classList.remove('open');
 }
 
-/* WhatsApp checkout — sends full itemized cart */
+/* WhatsApp checkout — Handles Pickup vs Delivery and MoMo payment verification */
 function waLink(message){
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
 function checkoutViaWhatsApp(){
   const cart = getCart();
   if(cart.length===0) return;
+
+  // Retrieve Customer Inputs
+  const nameEl = document.getElementById('custName');
+  const phoneEl = document.getElementById('custPhone');
+  const orderTypeEl = document.getElementById('orderType');
+  const locEl = document.getElementById('custLocation');
+  const refEl = document.getElementById('momoRef');
+
+  const name = nameEl ? nameEl.value.trim() : '';
+  const phone = phoneEl ? phoneEl.value.trim() : '';
+  const orderType = orderTypeEl ? orderTypeEl.value : 'delivery'; // 'delivery' or 'pickup'
+  const location = locEl ? locEl.value.trim() : '';
+  const momoRef = refEl ? refEl.value.trim() : '';
+
+  // Input Validation
+  if(!name || !phone){
+    alert('Please fill in your Name and Phone Number.');
+    return;
+  }
+
+  if(orderType === 'delivery' && !location){
+    alert('Please enter your Delivery Location.');
+    return;
+  }
+
+  if(!momoRef){
+    alert('Please send payment to our MoMo number (0245138854) and enter your MoMo Transaction ID / Reference.');
+    return;
+  }
+
   const subtotal = cartSubtotal();
-  const delivery = DELIVERY_FEE;
-  let msg = `Hello GENZ WAAKYE, I'd like to order:\n\n`;
+
+  let msg = `*NEW PAID ORDER - GENZ WAAKYE*\n`;
+  msg += `---------------------------------\n`;
+  msg += `👤 *Customer Name:* ${name}\n`;
+  msg += `📞 *Phone:* ${phone}\n`;
+  msg += `📦 *Order Method:* ${orderType.toUpperCase()}\n`;
+
+  if(orderType === 'pickup'){
+    msg += `📍 *Pickup Option:* Self Pickup at Store\n`;
+  } else {
+    msg += `📍 *Delivery Location:* ${location}\n`;
+  }
+
+  msg += `🧾 *MoMo Transaction ID:* ${momoRef}\n`;
+  msg += `---------------------------------\n\n`;
+  msg += `*ORDER ITEMS:*\n`;
+
   cart.forEach(c=>{
     msg += `• ${c.name} x${c.qty} — GH₵ ${c.qty*c.price}\n`;
   });
-  msg += `\nSubtotal: GH₵ ${subtotal}\nDelivery: GH₵ ${delivery}\nTotal: GH₵ ${subtotal+delivery}\n\nThank you!`;
+
+  msg += `\n*Subtotal:* GH₵ ${subtotal}\n`;
+
+  if(orderType === 'pickup'){
+    msg += `*Delivery Fee:* GH₵ 0 (Pickup Order)\n`;
+    msg += `*TOTAL AMOUNT PAID:* GH₵ ${subtotal}\n\n`;
+    msg += `Payment transferred via MoMo. I will come pick up the order when ready!`;
+  } else {
+    msg += `*Delivery Fee:* Delivery fee varies (To be calculated upon dispatch)\n`;
+    msg += `*TOTAL FOOD AMOUNT PAID:* GH₵ ${subtotal}\n\n`;
+    msg += `Payment transferred via MoMo. Please confirm receipt and let me know the delivery fee to my location.`;
+  }
+
   window.open(waLink(msg),'_blank');
+}
+
+/* Toggle location field visibility when Pickup/Delivery changes */
+function initOrderTypeToggle(){
+  const orderTypeEl = document.getElementById('orderType');
+  const locGroup = document.getElementById('locationGroup'); // Wrap your location field in an element with id="locationGroup"
+  
+  if(orderTypeEl){
+    orderTypeEl.addEventListener('change', ()=>{
+      const isPickup = orderTypeEl.value === 'pickup';
+      if(locGroup){
+        locGroup.style.display = isPickup ? 'none' : 'block';
+      }
+      renderCart();
+    });
+  }
 }
 
 /* Generic Order/Buy/Book/Checkout CTAs sitewide */
@@ -198,7 +283,7 @@ function initWaCtas(){
   document.querySelectorAll('.wa-generic-cta').forEach(el=>{
     el.addEventListener('click',(e)=>{
       e.preventDefault();
-      window.open(waLink(`Hello GENZ WAAKYE, I'd like to order…`),'_blank');
+      window.open(waLink(`Hello GENZ WAAKYE, I'd like to place an order…`),'_blank');
     });
   });
 }
@@ -315,6 +400,7 @@ function initChrome(){
   renderCart();
   initSearch();
   initWaCtas();
+  initOrderTypeToggle();
 }
 
 /* Reveal-on-scroll */
