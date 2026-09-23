@@ -71,11 +71,11 @@ const TOPPINGS = [
   {id:'t05', name:'Cow Skin (Wele)', price:5, group:'proteins', img:'images/wele.png'},
   {id:'t06', name:'Sausage', price:4, group:'proteins', img:'images/sausage.png'},
   {id:'t07', name:'Fried Plantain', price:5, group:'extras', img:'images/plantain.png'},
-  {id:'t08', name:'Spaghetti', price:8, group:'extras', img:'images/spag.png'},
-  {id:'t09', name:'Salad', price:5, group:'extras', img:'images/salad.png'},
+  {id:'t08', name:'Spaghetti', price:5, group:'extras', img:'images/spag.png'},
+  {id:'t09', name:'Mixed Salad', price:30, group:'extras', img:'images/salad.png'},
   {id:'t10', name:'Gari', price:5, group:'extras', img:'images/gari.png'},
-  {id:'t11', name:'Waagashi', price:3, group:'extras', img:'images/waagashi.png'},
-  {id:'t12', name:'Shito', price:10, group:'extras', img:'images/shito.png'},
+  {id:'t11', name:'Waagashi', price:10, group:'extras', img:'images/waagashi.png'},
+  {id:'t12', name:'Shito', price:5, group:'extras', img:'images/shito.png'},
 ];
 
 const WA_NUMBER = '233245138854'; // WhatsApp number for checkout
