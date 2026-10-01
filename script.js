@@ -78,7 +78,7 @@ const TOPPINGS = [
   {id:'t12', name:'Shito', price:5, group:'extras', img:'images/shito.png'},
 ];
 
-const WA_NUMBER = '233245138854'; // WhatsApp number for checkout
+const WA_NUMBER = '233539060826'; // WhatsApp number for checkout
 
 /* ============================================
    CART — localStorage-backed
