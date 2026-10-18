@@ -57,6 +57,14 @@ const MENU_ITEMS = [
   {id:'r16', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, plantain.', price:100, category:'rice', tags:['drink','sobolo'], popular:true, img:'images/rice-1.png'},
   {id:'r17', name:'Rice', desc:'Plain Rice, spaghetti, salad, chicken, fish, meat, wele, sausage, plantain.', price:150, category:'rice', tags:['drink','ginger'], popular:false, img:'images/rice-2.png'},
 
+  // Rice + mixed salad pre-order combos
+  {id:'rs01', name:'Rice + Mixed Salad (Chicken Thigh)', desc:'Rice, mixed salad and chicken thigh. Available by pre-order.', price:65, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken thigh','pre-order'], popular:false, preOrder:true, img:'images/combo1.png'},
+  {id:'rs02', name:'Rice + Mixed Salad (Chicken Wings)', desc:'Rice, mixed salad and chicken wings. Available by pre-order.', price:65, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken wings','pre-order'], popular:false, preOrder:true, img:'images/combo2.png'},
+  {id:'rs03', name:'Rice + Mixed Salad (Chicken Wings)', desc:'Rice, mixed salad and chicken wings. Available by pre-order.', price:85, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken wings','pre-order'], popular:false, preOrder:true, img:'images/combo2.png'},
+  {id:'rs04', name:'Rice + Mixed Salad (Chicken Thigh)', desc:'Rice, mixed salad and chicken thigh. Available by pre-order.', price:85, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken thigh','pre-order'], popular:false, preOrder:true, img:'images/combo1.png'},
+  {id:'rs05', name:'Rice + Mixed Salad (Chicken Thigh)', desc:'Rice, mixed salad and chicken thigh. Available by pre-order.', price:120, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken thigh','pre-order'], popular:false, preOrder:true, img:'images/combo1.png'},
+  {id:'rs06', name:'Rice + Mixed Salad (Chicken Wings)', desc:'Rice, mixed salad and chicken wings. Available by pre-order.', price:120, category:'rice-mixed-salad', tags:['rice','mixed salad','chicken wings','pre-order'], popular:false, preOrder:true, img:'images/combo2.png'},
+
   // Drinks
   {id:'d03', name:'Bottled Water', desc:'Chilled bottled water.', price:5, category:'drinks', tags:['drink','water'], popular:false, img:'images/bottle.png'},
   {id:'d04', name:'Coca-cola', desc:'Chilled Coke.', price:5, category:'drinks', tags:['drink','coke'], popular:false, img:'images/coke.png'},
@@ -137,6 +145,25 @@ function renderCart(){
   const wrap = document.getElementById('cartItems');
   if(!wrap) return;
   const cart = getCart();
+  const hasPreOrder = cart.some(item=>findItemById(item.id)?.preOrder);
+  const preOrderTimingGroup = document.getElementById('preOrderTimingGroup');
+  const preOrderTimingInput = document.getElementById('preOrderTiming');
+  const momoPaymentGroup = document.getElementById('momoPaymentGroup');
+  const momoRefInput = document.getElementById('momoRef');
+  const checkoutBtn = document.getElementById('cartCheckoutBtn');
+  if(preOrderTimingGroup && preOrderTimingInput){
+    preOrderTimingGroup.style.display = hasPreOrder ? 'block' : 'none';
+    preOrderTimingInput.required = hasPreOrder;
+    preOrderTimingInput.min = new Date(Date.now() - new Date().getTimezoneOffset() * 60000).toISOString().slice(0,16);
+    if(!hasPreOrder) preOrderTimingInput.value = '';
+  }
+  if(momoPaymentGroup) momoPaymentGroup.style.display = hasPreOrder ? 'none' : 'block';
+  if(momoRefInput) momoRefInput.required = !hasPreOrder;
+  if(checkoutBtn){
+    checkoutBtn.innerHTML = hasPreOrder
+      ? '<i class="fa-brands fa-whatsapp"></i> Send Pre-order Request'
+      : '<i class="fa-brands fa-whatsapp"></i> Confirm Payment & Order';
+  }
   if(cart.length===0){
     wrap.innerHTML = `<div class="cart-empty"><i class="fa-solid fa-bowl-food"></i><p>Your cart is empty.<br>Add something delicious!</p></div>`;
   }else{
@@ -165,15 +192,18 @@ function renderCart(){
   
   const deliveryEl = document.getElementById('cartDelivery');
   if(deliveryEl){
-    deliveryEl.textContent = isPickup ? 'GH₵ 0 (Pickup)' : 'Delivery fee varies';
+    deliveryEl.textContent = hasPreOrder
+      ? (isPickup ? 'GH₵ 0 (Pickup)' : 'To be confirmed')
+      : (isPickup ? 'GH₵ 0 (Pickup)' : 'Delivery fee varies');
   }
 
   const totalEl = document.getElementById('cartTotal');
   if(totalEl){
-    totalEl.textContent = isPickup ? `GH₵ ${subtotal}` : `GH₵ ${subtotal} + Delivery`;
+    totalEl.textContent = hasPreOrder
+      ? (isPickup ? `GH₵ ${subtotal} (estimate)` : `GH₵ ${subtotal} + Delivery`)
+      : (isPickup ? `GH₵ ${subtotal}` : `GH₵ ${subtotal} + Delivery`);
   }
 
-  const checkoutBtn = document.getElementById('cartCheckoutBtn');
   if(checkoutBtn) checkoutBtn.disabled = cart.length===0;
 }
 
@@ -201,13 +231,16 @@ function checkoutViaWhatsApp(){
   const phoneEl = document.getElementById('custPhone');
   const orderTypeEl = document.getElementById('orderType');
   const locEl = document.getElementById('custLocation');
-  const refEl = document.getElementById('momoRef');
+  const preOrderTimingEl = document.getElementById('preOrderTiming');
 
   const name = nameEl ? nameEl.value.trim() : '';
   const phone = phoneEl ? phoneEl.value.trim() : '';
   const orderType = orderTypeEl ? orderTypeEl.value : 'delivery'; // 'delivery' or 'pickup'
   const location = locEl ? locEl.value.trim() : '';
-  const momoRef = refEl ? refEl.value.trim() : '';
+  const momoRefEl = document.getElementById('momoRef');
+  const momoRef = momoRefEl ? momoRefEl.value.trim() : '';
+  const preOrderTiming = preOrderTimingEl ? preOrderTimingEl.value : '';
+  const hasPreOrder = cart.some(item=>findItemById(item.id)?.preOrder);
 
   // Input Validation
   if(!name || !phone){
@@ -220,14 +253,18 @@ function checkoutViaWhatsApp(){
     return;
   }
 
-  if(!momoRef){
-    alert('Please send payment to our MoMo number (0245138854) and enter your MoMo Transaction ID / Reference.');
+  if(hasPreOrder && (!preOrderTiming || new Date(preOrderTiming) <= new Date())){
+    alert('Please choose a future pickup or delivery date and time for your pre-order.');
+    return;
+  }
+
+  if(!hasPreOrder && !momoRef){
+    alert('Please send payment to our MoMo number (0539060826) and enter your MoMo Transaction ID / Reference.');
     return;
   }
 
   const subtotal = cartSubtotal();
-
-  let msg = `*NEW PAID ORDER - GENZ WAAKYE*\n`;
+  let msg = `*NEW ${hasPreOrder?'PRE-ORDER REQUEST':'PAID ORDER'} - GENZ WAAKYE*\n`;
   msg += `---------------------------------\n`;
   msg += `👤 *Customer Name:* ${name}\n`;
   msg += `📞 *Phone:* ${phone}\n`;
@@ -239,7 +276,12 @@ function checkoutViaWhatsApp(){
     msg += `📍 *Delivery Location:* ${location}\n`;
   }
 
-  msg += `🧾 *MoMo Transaction ID:* ${momoRef}\n`;
+  if(hasPreOrder){
+    msg += `🕒 *Preferred pre-order date and time:* ${preOrderTiming.replace('T',' ')}\n`;
+    msg += `Please confirm availability, the final total and payment details before preparing this order.\n`;
+  } else {
+    msg += `🧾 *MoMo Transaction ID:* ${momoRef}\n`;
+  }
   msg += `---------------------------------\n\n`;
   msg += `*ORDER ITEMS:*\n`;
 
@@ -247,13 +289,19 @@ function checkoutViaWhatsApp(){
     msg += `• ${c.name} x${c.qty} — GH₵ ${c.qty*c.price}\n`;
   });
 
-  msg += `\n*Subtotal:* GH₵ ${subtotal}\n`;
-
-  if(orderType === 'pickup'){
+  if(hasPreOrder){
+    msg += `\n*Estimated food subtotal:* GH₵ ${subtotal}\n`;
+    msg += orderType === 'pickup'
+      ? `*Collection:* Self pickup at Gen Z Waakye, Madina.\n`
+      : `*Delivery fee:* To be confirmed.\n`;
+    msg += `This is a pre-order request. I will pay after you confirm availability and the final amount.`;
+  } else if(orderType === 'pickup'){
+    msg += `\n*Subtotal:* GH₵ ${subtotal}\n`;
     msg += `*Delivery Fee:* GH₵ 0 (Pickup Order)\n`;
     msg += `*TOTAL AMOUNT PAID:* GH₵ ${subtotal}\n\n`;
     msg += `Payment transferred via MoMo. I will come pick up the order when ready!`;
   } else {
+    msg += `\n*Subtotal:* GH₵ ${subtotal}\n`;
     msg += `*Delivery Fee:* Delivery fee varies (To be calculated upon dispatch)\n`;
     msg += `*TOTAL FOOD AMOUNT PAID:* GH₵ ${subtotal}\n\n`;
     msg += `Payment transferred via MoMo. Please confirm receipt and let me know the delivery fee to my location.`;
@@ -297,6 +345,7 @@ function foodCardHTML(item){
   <div class="food-card" data-search="${item.name.toLowerCase()} ${item.tags.join(' ')}" data-category="${item.category}" data-popular="${item.popular}">
     <div class="img-wrap">
       ${item.popular ? '<span class="popular-tag">Popular</span>' : ''}
+      ${item.preOrder ? '<span class="preorder-tag">Pre-order</span>' : ''}
       <button class="fav ${isFav?'active':''}" aria-label="Favorite" onclick="toggleFav('${item.id}',this)"><i class="fa-solid fa-heart"></i></button>
       <img src="${item.img}" alt="${item.name}" loading="lazy">
     </div>

@@ -90,12 +90,18 @@
     <div class="filter-bar" id="filterBar">
       <button class="active" data-filter="all">All</button>
       <button data-filter="popular">Popular</button>
+      <button data-filter="waakye">Waakye</button>
       <button data-filter="rice">Rice</button>
+      <button data-filter="rice-mixed-salad">Rice + Mixed Salad</button>
       <button data-filter="proteins">Proteins</button>
       <button data-filter="drinks">Drinks</button>
       <button data-filter="extras">Extras</button>
     </div>
 
+    <div class="preorder-notice" id="preOrderNotice" hidden>
+      <i class="fa-regular fa-clock"></i>
+      <div><strong>Pre-order required</strong><p>Send a pre-order request with your preferred date and time. We’ll confirm availability, the final total and payment details before preparing it.</p></div>
+    </div>
     <div class="food-grid" id="menuGrid" style="margin-bottom:80px;"></div>
   </div>
 
@@ -206,18 +212,25 @@
           <textarea id="custLocation" placeholder="Delivery Location / Digital Address / Landmark *" rows="2" style="width:100%; padding:10px; margin-bottom:8px; border:1px solid var(--border-light); border-radius:6px; font-size:0.85rem; resize:none;"></textarea>
         </div>
 
+        <div id="preOrderTimingGroup" style="display:none; margin-bottom:8px;">
+          <label for="preOrderTiming" style="display:block; margin-bottom:6px; font-weight:600; font-size:0.85rem;">Preferred pickup / delivery date and time *</label>
+          <input type="datetime-local" id="preOrderTiming" style="width:100%; padding:10px; border:1px solid var(--border-light); border-radius:6px; font-size:0.85rem;">
+          <small style="display:block; margin-top:4px; color:var(--text-muted);">We’ll confirm availability, the final total and payment details on WhatsApp before preparing your order.</small>
+        </div>
+
         <div id="pickupNotice" style="display:none; background:var(--surface-cream-deep); border-radius:6px; padding:10px; margin-bottom:10px; font-size:0.82rem;">
           <strong><i class="fa-solid fa-bag-shopping"></i> Pickup Order</strong>
           <p style="margin-top:2px; color:var(--text-muted);">Collection at Gen Z Waakye, Madina.</p>
         </div>
 
-        <div style="background: var(--brand-gold-subtle); border: 1px solid var(--brand-gold); border-radius: 6px; padding: 10px; margin-bottom: 10px; font-size: 0.82rem;">
-          <strong style="color: var(--brand-brown); display:block; margin-bottom:4px;">💳 Direct MoMo Payment Details:</strong>
-          <div><b>MoMo Number:</b> 0539060826</div>
-          <div><b>Account Name:</b> FIRDAUS MOHAMMED</div>
+        <div id="momoPaymentGroup">
+          <div style="background: var(--brand-gold-subtle); border: 1px solid var(--brand-gold); border-radius: 6px; padding: 10px; margin-bottom: 10px; font-size: 0.82rem;">
+            <strong style="color: var(--brand-brown); display:block; margin-bottom:4px;">💳 Direct MoMo Payment Details:</strong>
+            <div><b>MoMo Number:</b> 0539060826</div>
+            <div><b>Account Name:</b> FIRDAUS MOHAMMED</div>
+          </div>
+          <input type="text" id="momoRef" placeholder="Enter MoMo Transaction ID / Reference *" required style="width:100%; padding:10px; margin-bottom:8px; border:1px solid var(--border-light); border-radius:6px; font-size:0.85rem;">
         </div>
-
-        <input type="text" id="momoRef" placeholder="Enter MoMo Transaction ID / Reference *" required style="width:100%; padding:10px; margin-bottom:8px; border:1px solid var(--border-light); border-radius:6px; font-size:0.85rem;">
       </div>
 
       <button class="btn btn-orange btn-block" id="cartCheckoutBtn" style="margin-top:8px;">
@@ -266,6 +279,7 @@
 
   const params = new URLSearchParams(window.location.search);
   const priceParam = params.get('price');
+  const categoryParam = params.get('category');
 
   function renderToppings(group){
     const list = group ? TOPPINGS.filter(t=>t.group===group) : TOPPINGS;
@@ -275,9 +289,12 @@
   function renderMainGrid(filter){
     let list = MENU_ITEMS;
     if(filter==='popular') list = MENU_ITEMS.filter(i=>i.popular);
+    else if(filter==='waakye') list = MENU_ITEMS.filter(i=>i.category==='waakye');
     else if(filter==='rice') list = MENU_ITEMS.filter(i=>i.category==='rice');
+    else if(filter==='rice-mixed-salad') list = MENU_ITEMS.filter(i=>i.category==='rice-mixed-salad');
     else if(filter==='drinks') list = MENU_ITEMS.filter(i=>i.category==='drinks');
     document.getElementById('menuGrid').innerHTML = list.map(foodCardHTML).join('');
+    document.getElementById('preOrderNotice').hidden = filter!=='rice-mixed-salad';
   }
 
   function initFilterBar(){
@@ -288,6 +305,7 @@
         btn.classList.add('active');
         const key = btn.dataset.filter;
         if(key==='proteins'||key==='extras'){
+          document.getElementById('preOrderNotice').hidden = true;
           renderToppings(key);
           document.getElementById('toppingsSection').scrollIntoView({ behavior:'smooth', block:'start' });
         } else {
@@ -314,7 +332,11 @@
     document.getElementById('pcSubtitle').textContent = `${items.length} meal${items.length===1?'':'s'} in this price tier.`;
     document.getElementById('pcGrid').innerHTML = items.map(foodCardHTML).join('');
   } else {
-    renderMainGrid('all');
+    const activeCategory = ['waakye','rice','rice-mixed-salad'].includes(categoryParam) ? categoryParam : 'all';
+    document.querySelectorAll('#filterBar button').forEach(btn=>{
+      btn.classList.toggle('active', btn.dataset.filter===activeCategory);
+    });
+    renderMainGrid(activeCategory);
     renderToppings(null);
     initFilterBar();
   }
