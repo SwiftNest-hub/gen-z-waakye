@@ -86,7 +86,7 @@ const TOPPINGS = [
   {id:'t12', name:'Shito', price:5, group:'extras', img:'images/shito.png'},
 ];
 
-const WA_NUMBER = '233245138854'; // WhatsApp number for checkout
+const WA_NUMBER = '233539060826'; // WhatsApp number for checkout
 
 /* ============================================
    CART — localStorage-backed
@@ -259,7 +259,7 @@ function checkoutViaWhatsApp(){
   }
 
   if(!hasPreOrder && !momoRef){
-    alert('Please send payment to our MoMo number (0245138854) and enter your MoMo Transaction ID / Reference.');
+    alert('Please send payment to our MoMo number (0539060826) and enter your MoMo Transaction ID / Reference.');
     return;
   }
 
